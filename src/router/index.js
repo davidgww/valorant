@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 const Home = () => import('@/views/home/Home.vue')
+const HeroDetail = () => import('@/views/heroDetail/HeroDetail.vue')
+const GunDetail = () => import('@/views/gunDetail/GunDetail.vue')
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,6 +23,15 @@ const routes = [
       title: "首页"
     },
     component: Home
+  },
+    // 英雄
+  {
+    path: '/hero',
+    name: 'Hero',
+    meta: {
+      title: "英雄"
+    },
+    component: () => import('@/views/hero/Hero.vue')
   },
   // 枪械
   {
@@ -75,6 +86,30 @@ const routes = [
       title: "Liquipedia"
     },
     component: () => import('@/views/Liquipedia/Liquipedia.vue')
+  },
+  {
+    path: '/HeroDetail',
+    name: 'HeroDetail',
+    meta: {
+      title: "英雄详情"
+    },
+    component: () => import('@/views/heroDetail/HeroDetail.vue')
+  },
+  {
+    path: '/GunDetail',
+    name: 'GunDetail',
+    meta: {
+      title: "枪械详情"
+    },
+    component: () => import('@/views/gunDetail/GunDetail.vue')
+  },
+  {
+    path: '/gamevideo',
+    name: 'GameVideo',
+    meta: {
+      title: "游戏视频"
+    },
+    component: () => import('@/views/gamevideo/gamevideo.vue')
   },
 ]
 

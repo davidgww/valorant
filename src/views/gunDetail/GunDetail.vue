@@ -1,0 +1,181 @@
+<template>
+  <div class="gundetail" id="gundetail" v-cloak>
+    <div class="gundetail_page">
+      <Search></Search>
+      <div class="cn1">
+        <iframe
+          class="lf"
+          width="355"
+          height="217"
+          src="//player.bilibili.com/player.html?aid=840312568&bvid=BV1y54y197U7&cid=180118604&page=1"
+          scrolling="no"
+          border="0"
+          frameborder="no"
+          framespacing="0"
+          allowfullscreen="true"
+        ></iframe>
+        <div class="con rh">
+          <h2 class="tit">Classic经典</h2>
+          <ul>
+            <li>
+              <span class="sp1">价格</span>
+              <span class="sp2">免费</span>
+            </li>
+            <li>
+              <span class="sp1">射速</span>
+              <span class="sp2">6.75/秒</span>
+            </li>
+            <li>
+              <span class="sp1">弹夹容量</span>
+              <span class="sp2">12</span>
+            </li>
+            <li>
+              <span class="sp1">射速(备用)</span>
+              <span class="sp2">2.22秒</span>
+            </li>
+            <li>
+              <span class="sp1">穿墙能力</span>
+              <span class="sp2">低</span>
+            </li>
+            <li>
+              <span class="sp1">0-30M伤害</span>
+              <span class="sp2">身体-26</span>
+              <span class="sp2">头-26</span>
+              <span class="sp2">腿-26</span>
+            </li>
+            <li>
+              <span class="sp1">主要开火模式</span>
+              <span class="sp2">半自动</span>
+            </li>
+            <li>
+              <span class="sp1">30-50M伤害</span>
+               <span class="sp2">身体-26</span>
+              <span class="sp2">头-26</span>
+              <span class="sp2">腿-26</span>
+            </li>
+            <li>
+              <span class="sp1">备用开火模式</span>
+              <span class="sp2">无</span>
+            </li>
+            <li>
+              <span class="sp1">一句话点评</span>
+              <span class="sp2">每回合都会免费得到，伤害低，没钱时能用</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="c1"></div>
+      <div class="cn2">
+        <Game>
+          <img src="@/assets/img/detail/pic4.png" alt="">
+        </Game>
+        <Game>
+          <img src="@/assets/img/detail/pic5.png" alt="">
+        </Game>
+        <div class="c1" style="height:147px"></div>
+        <div class="partner">
+          <img src="@/assets/img/detail/pic3.png" alt />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Search from "@/components/common/search.vue";
+import Recommend from "@/components/common/recommend.vue";
+import Game from "@/components/common/game.vue";
+export default {
+  name: "gundetail",
+  components: {
+    Search,
+    Recommend,
+    Game
+  }
+};
+</script>
+<style scoped>
+[v-cloak] {
+  display: none;
+}
+#gundetail {
+  width: 100%;
+  overflow: hidden;
+  min-height: 983px;
+  background: #121f2b url(~@/assets/img/heroGun/bg.png) no-repeat center top;
+}
+#gundetail .gundetail_page {
+  width: 1000px;
+  margin: 0 auto;
+  background: #101823;
+}
+#gundetail .cn1 {
+  width: 898px;
+  height: 217px;
+  margin-left: 64px;
+}
+#gundetail .cn1 .con{
+  width: 522px;
+  height: 217px;
+  margin-left: 21px;
+}
+#gundetail .cn1 .con h2.tit{
+  margin: 0;
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 16px;
+  margin-top: 2px;
+}
+#gundetail .cn1 .con ul li{
+  float: left;
+  margin-right: 6px;
+  margin-bottom: 11px;
+}
+#gundetail .cn1 .con ul li:last-child .sp2{
+  width: 242px;
+}
+#gundetail .cn1 .con ul li:nth-of-type(2n){
+  margin-right: 0;
+}
+#gundetail .cn1 .con ul li span.sp1{
+  display: block;
+  width: 90px;
+  height: 26px;
+  text-align: center;
+  line-height: 26px;
+  border: 1px solid #1e2d43;
+  background: #17222f;
+  color: #516177;
+  font-size: 12px;
+  float: left;
+  margin-right: 5px;
+  cursor: default;
+}
+#gundetail .cn1 .con ul li span.sp2{
+  display: block;
+  width: 76px;
+  height: 26px;
+  text-align: center;
+  line-height: 26px;
+  border: 1px solid #1e2d43;
+  background: #101823;
+  font-size: 12px;
+  float: left;
+  color: white;
+  cursor: default;
+  margin-right:2px;
+}
+#gundetail .cn1 .con ul li span.sp2:last-child{
+  margin-right: 0;
+}
+#gundetail .cn2 {
+  width: 870px;
+  margin-left: 64px;
+  min-height: 400px;
+}
+#gundetail .partner {
+  width: 100%;
+  text-align: right;
+  padding-bottom: 30px;
+}
+</style>

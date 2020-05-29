@@ -13,3 +13,9 @@ ul{
 .rh{
     float: right;
 }
+.c1{
+    clear: both;
+}
+input:focus{
+    outline: none;
+}

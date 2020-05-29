@@ -13,7 +13,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #foot{
-    height: 248px;
+    height: 207px;
     width: 100%;
     background: #010915;
     color:white;
