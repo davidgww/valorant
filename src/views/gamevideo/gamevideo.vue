@@ -25,7 +25,7 @@
         </Game>
         <div class="c1" style="height:147px"></div>
         <div class="partner">
-          <img src="@/assets/img/detail/pic3.png" alt />
+          <img src="@/assets/img/detail/pic3.png" alt /> 
         </div>
       </div>
     </div>
