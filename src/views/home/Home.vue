@@ -54,7 +54,7 @@ display: none;
   width: 100%;
   overflow: hidden;
   min-height: 983px;
-  background:#121f2b url(~@/assets/img/heroGun/bg.png) no-repeat center top;
+  background:#121f2b url(~@/assets/img/global/bg.png) no-repeat center top;
 }
 #home .home_page{
   width: 1000px;

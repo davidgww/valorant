@@ -19,3 +19,6 @@ ul{
 input:focus{
     outline: none;
 }
+i{
+    font-style: normal;
+}
