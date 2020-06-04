@@ -3,51 +3,12 @@
     <div class="tp">
       <img src="@/assets/img/detail/pic1.png" alt="">
     </div>
-    <swiper class="swiper" :options="swiperOption">
-      <swiper-slide>
-        <img src="@/assets/img/fw/fw1.png" alt="">
-        <span>即可操纵闪光球向左拐，引爆后会
-使所有望向它的玩家眩目</span>
-      </swiper-slide>
-       <swiper-slide>
-        <img src="@/assets/img/fw/fw1.png" alt="">
-        <span>即可操纵闪光球向左拐，引爆后会
-使所有望向它的玩家眩目</span>
-      </swiper-slide>
-       <swiper-slide>
-        <img src="@/assets/img/fw/fw1.png" alt="">
-        <span>即可操纵闪光球向左拐，引爆后会
-使所有望向它的玩家眩目</span>
-      </swiper-slide>
-       <swiper-slide>
-        <img src="@/assets/img/fw/fw1.png" alt="">
-        <span>即可操纵闪光球向左拐，引爆后会
-使所有望向它的玩家眩目</span>
-      </swiper-slide>
-       <swiper-slide>
-        <img src="@/assets/img/fw/fw1.png" alt="">
-        <span>即可操纵闪光球向左拐，引爆后会
-使所有望向它的玩家眩目</span>
-      </swiper-slide>
-       <swiper-slide>
-        <img src="@/assets/img/fw/fw1.png" alt="">
-        <span>即可操纵闪光球向左拐，引爆后会
-使所有望向它的玩家眩目</span>
-      </swiper-slide>
-       <swiper-slide>
-        <img src="@/assets/img/fw/fw1.png" alt="">
-        <span>即可操纵闪光球向左拐，引爆后会
-使所有望向它的玩家眩目</span>
-      </swiper-slide>
-       <swiper-slide>
-        <img src="@/assets/img/fw/fw1.png" alt="">
-        <span>即可操纵闪光球向左拐，引爆后会
-使所有望向它的玩家眩目</span>
-      </swiper-slide>
-       <swiper-slide>
-        <img src="@/assets/img/fw/fw1.png" alt="">
-        <span>即可操纵闪光球向左拐，引爆后会
-使所有望向它的玩家眩目</span>
+    <swiper class="swiper" :options="swiperOption" >
+      <swiper-slide v-for="(item,index) in list" :key="index">
+        <div class="cn"  @click="itemClick(item.id)">
+         <img :src="'https://images.weserv.nl/?url='+item.image" alt="" >
+          <span>{{item.title}}</span>
+        </div>
       </swiper-slide>
       <div class="swiper-button-prev" slot="button-prev"></div>
       <div class="swiper-button-next" slot="button-next"></div>
@@ -58,7 +19,7 @@
 <script>
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
-
+import {api} from "@/request/api";
 export default {
   name: "swiper-example-slides-per-column",
   title: "Multi row slides layout",
@@ -66,8 +27,12 @@ export default {
     Swiper,
     SwiperSlide
   },
+  created() {
+    this.initdata();
+  },
   data() {
     return {
+      list:[],
       swiperOption: {
         slidesPerView: 4,
         slidesPerColumn: 2,
@@ -82,7 +47,20 @@ export default {
         }
       }
     };
-  }
+  },
+   methods: {
+    initdata(id){
+      api("/web2_0/getNewsByTags/and?tags=6274&page=0&num=10",{
+        }).then((result) => {
+          this.list = result.data;
+        }).catch((err) => {
+          console.log(err);
+        });
+    }, 
+     itemClick(id){
+      alert("英雄攻略新闻ID:"+id);
+    }
+  } 
 };
 </script>
 

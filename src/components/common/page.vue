@@ -1,8 +1,8 @@
 <template>
   <div class="page" id="page">
     <div class="top">
-        <img src="@/assets/img/global/pic1.png" alt="" class="Img1">
-        <img src="@/assets/img/global/pic2.png" alt="" class="Img2">
+        <div class="n1"></div>
+        <div class="n2"></div>
     </div>
      <div class="c1"></div>
      <ul class="recommend">
@@ -14,9 +14,10 @@
      <div class="c1"></div>
      <!--  -->
      <div class="download">
-         <img src="@/assets/img/global/pic5.png" alt="" class="Img3">
-         <img src="@/assets/img/global/pic4.png" alt="" class="Img4">
-         <img src="@/assets/img/global/pic3.png" alt="" class="Img5">
+        <div class="load1" @click="tabClick(0)" :class="[{active:current==0}]"></div>
+        <div class="load2" @click="tabClick(1)" :class="[{active:current==1}]"></div>
+        <img src="@/assets/img/global/pic3.png" alt="" class="Img5" v-show="show1">
+        <img src="@/assets/img/global/pic3-1.png" alt="" class="Img5" v-show="show2">
      </div>
   </div>
 </template>
@@ -33,8 +34,6 @@ export default {
    initdata(){
     apiHomeHotNews({                                
     }).then((result) => {
-        console.log(result);
-        
        this.list = result.data;
      }).catch((err) => {
        console.log(err);
@@ -48,11 +47,24 @@ export default {
             id: id
           }
         });
+    },
+    tabClick(num) {
+        this.current = num;
+        if(num == 0){
+            this.show1 = true
+            this.show2 = false
+        }else{
+            this.show1 = false
+            this.show2 = true
+        }
     }
   },
   data(){
       return{
-          list:[]
+          list:[],
+          current:0,
+          show1:true,
+          show2:false
       }
   }
 }
@@ -65,14 +77,27 @@ export default {
     width: 280px;
     float: left;
 }
-#page .top img{
-    margin-left: 22px;
-    display:block;
+#page .top .n1{
+    width: 247px;
+    height: 64px;
     cursor: pointer;
+    margin-left: 22px;
+    background: url("~@/assets/img/global/pic1.png") no-repeat;
 }
-#page img.Img2{
+#page .top .n1:hover{
+    background: url("~@/assets/img/global/pic1_h.png") no-repeat;
+}
+#page .top .n2{
+    width: 247px;
+    height: 64px;
+    cursor: pointer;
+    margin-left: 22px;
     margin-top: 16px;
     margin-bottom: 24px;
+    background: url("~@/assets/img/global/pic2.png") no-repeat;
+}
+#page .top .n2:hover{
+    background: url("~@/assets/img/global/pic2_h.png") no-repeat;
 }
 #page .recommend{
     min-height: 611px;
@@ -123,11 +148,35 @@ export default {
    height: 150px;
    position: relative;
 }
-#page .download img.Img3{
+#page .download .load1{
+    width: 147px;
+    height: 29px;
     position: absolute;
     top: 30px;
     left: -18px;
     cursor: pointer;
+    background: url("~@/assets/img/global/pic5.png") no-repeat;
+}
+#page .download .load1.active{
+    background: url("~@/assets/img/global/pic5_h.png") no-repeat;
+}
+#page .download .load2{
+    width: 147px;
+    height: 29px;
+    position: absolute;
+    top: 75px;
+    left: -18px;
+    cursor: pointer;
+    background: url("~@/assets/img/global/pic4.png") no-repeat;
+}
+#page .download .load2.active{
+    background: url("~@/assets/img/global/pic4_h.png") no-repeat;
+}
+#page .download .load1:hover{
+    background: url("~@/assets/img/global/pic5_h.png") no-repeat;
+}
+#page .download .load2:hover{
+    background: url("~@/assets/img/global/pic4_h.png") no-repeat;
 }
 #page .download img.Img4{
     position: absolute;
@@ -136,8 +185,8 @@ export default {
     cursor: pointer;
 }
 #page .download img.Img5{
-    position: absolute;
-    right: 0;
-    bottom: 0;
+   position: absolute;
+    right: 12px;
+    bottom: 16px;
 }
 </style>

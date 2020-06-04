@@ -6,29 +6,33 @@
       <div class="cn_rh">
         <Top>
           <img src="@/assets/img/global/pic9.png" alt="" class="Img1" slot="bg">
+          <select name="public-choice"  slot="sec" v-model="select"  @change="getCouponSelected">
+            <option  :value="coupon.type" v-for="(coupon,index) in couponList" :key="index">{{coupon.title}}</option>
+          </select>
+          <div class="search" slot="search">
+            <input type="text" placeholder="输入关键字搜索英雄"  v-model="search">
+            <img src="@/assets/img/global/pic10.png" alt="">
+          </div>
         </Top>
         <div class="c1" style="height:14px;"></div>
         <Cn class="cn_cn">
-          <li slot="hero" @click="itemClick(1)">
-            <img  src="@/assets/img/fw/fw2.png" alt="">
-            <h1>phoenix</h1>
-            <h2>守卫者</h2>
-            <p>菲尼克斯的明星风范影响了他的战斗
-  风格，他会以耀眼的方式点燃全场。
-  就算没有援军他也会直冲战场。</p>
+          <li slot="hero" v-for="(item,index) in items" :key="index" @click="itemClick(item.id)">
+            <img :src="'https://images.weserv.nl/?url='+item.image" alt="">
+            <h1>{{item.name}}</h1>
+            <h2>{{item.title}}</h2>
+            <p>{{item.desc}}</p>
           </li>
-          
         </Cn>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import Page from '@/components/common/page.vue'
 import Search from '@/components/common/search.vue'
 import Top from '@/components/common/Top.vue'
 import Cn from '@/components/common/cn.vue'
+import {api} from "@/request/api";
 export default {
   name: 'hero',
   components: {
@@ -37,7 +41,67 @@ export default {
    Top,
    Cn,
   },
+
+  data(){
+    return{
+      search:'',
+      list:[],
+      selectlist:[],
+      select:'',
+      couponList: [],
+    }
+  },
+  created() {
+    this.initdata();
+  },
+  computed: {
+    items:function(){
+      let _search = this.search;
+      let reg = new RegExp(_search, 'ig');// 不区分大小写
+      if (_search) {
+        return this.list.filter(function(item){
+          if((item.name.toString().indexOf(_search) != -1) || item.name.match(reg) || (item.title.toString().indexOf(_search) != -1)|| (item.desc.toString().indexOf(_search) != -1)){
+            return item;
+          }
+        });
+      }
+      return this.list;
+    },
+  },
    methods: {
+    initdata(){
+        let url ="/web2_0/vat_hero"
+        api(url,{
+        }).then((result) => {
+          console.log(result);
+          this.list = result.data;
+          this.selectlist = result.data;
+        }).catch((err) => {
+          console.log(err);
+        });
+
+        api("/web2_0/vat_herosort",{
+        }).then((result) => {
+          this.couponList = result.data;
+          this.select = this.couponList[0].id;
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
+    // select
+    getCouponSelected(){
+        let set = this.select;
+        if(set != 0){
+          let newList = this.selectlist.filter(function(n){
+            return n.type == set
+          })
+          console.log(newList);
+          this.list = newList;
+        }else{
+          this.list = this.selectlist;
+        }
+        
+    },
     itemClick(id){
       console.log(id);
        this.$router.push({
@@ -55,12 +119,11 @@ export default {
   width: 100%;
   overflow: hidden;
   min-height: 983px;
-  background:#121f2b url(~@/assets/img/heroGun/bg.png) no-repeat center top;
+  background: url(~@/assets/img/global/bg.png) no-repeat center top;
 }
 #hero .hero_page{
   width: 1000px;
   margin: 0 auto;
-  background: #101823;
 }
 #hero .cn_rh{
   float: left;

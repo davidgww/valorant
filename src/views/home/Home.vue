@@ -59,7 +59,6 @@ display: none;
 #home .home_page{
   width: 1000px;
   margin: 0 auto;
-  background: #101823;
 }
 #home .cn_rh{
   float: left;

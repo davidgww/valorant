@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 const Home = () => import('@/views/home/Home.vue')
 const HeroDetail = () => import('@/views/heroDetail/HeroDetail.vue')
-const GunDetail = () => import('@/views/gunDetail/GunDetail.vue')
+const gundetail = () => import('@/views/gunDetail/GunDetail.vue')
 Vue.use(VueRouter)
 
 const routes = [
@@ -96,7 +96,7 @@ const routes = [
     component: () => import('@/views/heroDetail/HeroDetail.vue')
   },
   {
-    path: '/GunDetail',
+    path: '/gundetail',
     name: 'GunDetail',
     meta: {
       title: "枪械详情"

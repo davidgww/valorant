@@ -12,18 +12,18 @@
   </div>
    <div class="c1" style="height:38px"></div>
   <!-- 个人数据 -->
-  <div class="tab1 animate__animated animate__bounceInLeft" v-show='show0'>
+  <div class="tab1 animate__animated animate__fadeIn" v-show='show0'>
     <Personal></Personal>
   </div>
   <!-- 个人数据 -->
   <!-- 对战数据 -->
-  <div class="tab2 animate__animated animate__bounceInLeft" v-show='show1'>
+  <div class="tab2 animate__animated animate__fadeIn" v-show='show1'>
     <Fight></Fight>
   </div>
   <!-- 对战数据 -->
   <!-- 战队数据 -->
-  <div class="tab3 animate__animated animate__bounceInLeft" v-show='show2'>
-    <Edg></Edg>
+  <div class="tab3 animate__animated animate__fadeIn" v-show='show2'>
+    <Team></Team>
   </div>
   <!-- 战队数据 -->
     
@@ -33,8 +33,8 @@
 <script>
 import animate from 'animate.css'
 import Personal from "@/views/info/Personal_data.vue"
+import Team from "@/views/info/Team_data.vue"
 import Fight from "@/views/info/Fight.vue"
-import Edg from "@/views/info/Edg.vue"
 import Search from '@/components/common/search.vue'
 export default {
  name:"Info",
@@ -42,7 +42,7 @@ export default {
    Search,
    Personal,
    Fight,
-   Edg,
+   Team,
  },
  data(){
    return{
@@ -60,6 +60,7 @@ export default {
            this.show0=true;
            this.show1=false;
            this.show2=false;
+           
         }else if(num == 1){
            this.show1=true;
            this.show0=false;
@@ -147,5 +148,8 @@ export default {
   color: #516177;
   font-weight: normal;
   font-size: 12px;
+}
+.tab1{
+  min-height: 1000px;
 }
 </style>

@@ -2,6 +2,7 @@
 const path = require('path')
 const resolve = dir => path.join(__dirname, dir)
 module.exports = {
+  css:{ sourceMap: true },
   productionSourceMap: false,//配置不显示源码     
 //   publicPath: '/special/gww_test/dist/',
   // 设置本地访问接口时允许跨域

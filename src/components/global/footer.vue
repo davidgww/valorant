@@ -15,7 +15,11 @@ export default {
 #foot{
     height: 207px;
     width: 100%;
+    line-height: 207px;
+    text-align: center;
     background: #010915;
-    color:white;
+    color:rgb(45, 189, 88);
+    font-size: 48px;
+
 }
 </style>

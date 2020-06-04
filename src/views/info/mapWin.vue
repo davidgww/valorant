@@ -2,92 +2,152 @@
   <swiper class="swiper" id="fx" :options="swiperOption">
     <swiper-slide>
       <div class="map-img lf">
-      <img src="@/assets/img/fw/fw1.png" alt="">
+        <img src="@/assets/img/fw/fw1.png" alt />
       </div>
       <div class="map-cn lf">
-        <span>223 <i>场</i></span>
-        <span>23% <i>胜</i></span>
+        <span>
+          223
+          <i>场</i>
+        </span>
+        <span>
+          23%
+          <i>胜</i>
+        </span>
       </div>
     </swiper-slide>
     <swiper-slide>
       <div class="map-img lf">
-      <img src="@/assets/img/fw/fw1.png" alt="">
+        <img src="@/assets/img/fw/fw1.png" alt />
       </div>
       <div class="map-cn lf">
-        <span>223 <i>场</i></span>
-        <span>23% <i>胜</i></span>
+        <span>
+          223
+          <i>场</i>
+        </span>
+        <span>
+          23%
+          <i>胜</i>
+        </span>
       </div>
     </swiper-slide>
     <swiper-slide>
       <div class="map-img lf">
-      <img src="@/assets/img/fw/fw1.png" alt="">
+        <img src="@/assets/img/fw/fw1.png" alt />
       </div>
       <div class="map-cn lf">
-        <span>223 <i>场</i></span>
-        <span>23% <i>胜</i></span>
+        <span>
+          223
+          <i>场</i>
+        </span>
+        <span>
+          23%
+          <i>胜</i>
+        </span>
       </div>
     </swiper-slide>
     <swiper-slide>
       <div class="map-img lf">
-      <img src="@/assets/img/fw/fw1.png" alt="">
+        <img src="@/assets/img/fw/fw1.png" alt />
       </div>
       <div class="map-cn lf">
-        <span>223 <i>场</i></span>
-        <span>23% <i>胜</i></span>
+        <span>
+          223
+          <i>场</i>
+        </span>
+        <span>
+          23%
+          <i>胜</i>
+        </span>
       </div>
     </swiper-slide>
     <swiper-slide>
       <div class="map-img lf">
-      <img src="@/assets/img/fw/fw1.png" alt="">
+        <img src="@/assets/img/fw/fw1.png" alt />
       </div>
       <div class="map-cn lf">
-        <span>223 <i>场</i></span>
-        <span>23% <i>胜</i></span>
+        <span>
+          223
+          <i>场</i>
+        </span>
+        <span>
+          23%
+          <i>胜</i>
+        </span>
       </div>
     </swiper-slide>
     <swiper-slide>
       <div class="map-img lf">
-      <img src="@/assets/img/fw/fw1.png" alt="">
+        <img src="@/assets/img/fw/fw1.png" alt />
       </div>
       <div class="map-cn lf">
-        <span>223 <i>场</i></span>
-        <span>23% <i>胜</i></span>
+        <span>
+          223
+          <i>场</i>
+        </span>
+        <span>
+          23%
+          <i>胜</i>
+        </span>
       </div>
     </swiper-slide>
     <swiper-slide>
       <div class="map-img lf">
-      <img src="@/assets/img/fw/fw1.png" alt="">
+        <img src="@/assets/img/fw/fw1.png" alt />
       </div>
       <div class="map-cn lf">
-        <span>223 <i>场</i></span>
-        <span>23% <i>胜</i></span>
+        <span>
+          223
+          <i>场</i>
+        </span>
+        <span>
+          23%
+          <i>胜</i>
+        </span>
       </div>
     </swiper-slide>
     <swiper-slide>
       <div class="map-img lf">
-      <img src="@/assets/img/fw/fw1.png" alt="">
+        <img src="@/assets/img/fw/fw1.png" alt />
       </div>
       <div class="map-cn lf">
-        <span>223 <i>场</i></span>
-        <span>23% <i>胜</i></span>
+        <span>
+          223
+          <i>场</i>
+        </span>
+        <span>
+          23%
+          <i>胜</i>
+        </span>
       </div>
     </swiper-slide>
     <swiper-slide>
       <div class="map-img lf">
-      <img src="@/assets/img/fw/fw1.png" alt="">
+        <img src="@/assets/img/fw/fw1.png" alt />
       </div>
       <div class="map-cn lf">
-        <span>223 <i>场</i></span>
-        <span>23% <i>胜</i></span>
+        <span>
+          223
+          <i>场</i>
+        </span>
+        <span>
+          23%
+          <i>胜</i>
+        </span>
       </div>
     </swiper-slide>
     <swiper-slide>
       <div class="map-img lf">
-      <img src="@/assets/img/fw/fw1.png" alt="">
+        <img src="@/assets/img/fw/fw1.png" alt />
       </div>
       <div class="map-cn lf">
-        <span>223 <i>场</i></span>
-        <span>23% <i>胜</i></span>
+        <span>
+          223
+          <i>场</i>
+        </span>
+        <span>
+          23%
+          <i>胜</i>
+        </span>
       </div>
     </swiper-slide>
     <div class="swiper-button-prev" slot="button-prev"></div>
@@ -105,16 +165,24 @@ export default {
     Swiper,
     SwiperSlide
   },
+  props: {
+    id: String
+  },
   data() {
     return {
       swiperOption: {
         slidesPerView: 1,
         slidesPerColumn: 4,
         spaceBetween: 4,
+        observer: true,
+        observerParents: true,
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents:true,//修改swiper的父元素时，自动初始化swiper
         pagination: {
           el: ".swiper-pagination",
           clickable: true
         },
+        
         navigation: {
           nextEl: "#fx .swiper-button-next",
           prevEl: "#fx .swiper-button-prev"
@@ -170,39 +238,39 @@ export default {
 .swiper-container-rtl .swiper-button-next:after {
   content: none;
 }
-#fx .map-img img{
+#fx .map-img img {
   width: 76px;
   height: 46px;
   display: block;
   margin: 3px 0 3px 3px;
 }
-#fx .map-cn{
+#fx .map-cn {
   width: 76px;
   height: 52px;
 }
-#fx .map-cn span{
+#fx .map-cn span {
   display: block;
   height: 27px;
   line-height: 27px;
 }
-#fx .map-cn span:nth-child(1){
+#fx .map-cn span:nth-child(1) {
   font-size: 18px;
   font-weight: bold;
   color: white;
 }
 
-#fx .map-cn span:nth-child(1) i{
+#fx .map-cn span:nth-child(1) i {
   font-style: normal;
   color: #516177;
   font-size: 12px;
 }
-#fx .map-cn span:nth-child(2){
+#fx .map-cn span:nth-child(2) {
   font-size: 14px;
   font-weight: bold;
   color: #ff4655;
 }
 
-#fx .map-cn span:nth-child(2) i{
+#fx .map-cn span:nth-child(2) i {
   font-style: normal;
   color: #516177;
   font-size: 12px;

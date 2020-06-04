@@ -22,3 +22,6 @@ input:focus{
 i{
     font-style: normal;
 }
+:focus{
+    outline: none;
+}

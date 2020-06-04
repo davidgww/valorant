@@ -66,7 +66,7 @@ export default {
       _this.path = to.path;
       if (_this.path == "/hero") {
         _this.active = 0;
-      } else if (_this.path == "/gun") {
+      } else if (_this.path == "/gun" || _this.path == "/gundetail") {
         _this.active = 1;
       } else if (_this.path == "/info") {
         _this.active = 2;

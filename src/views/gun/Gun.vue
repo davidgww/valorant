@@ -6,14 +6,21 @@
       <div class="cn_rh">
         <Top>
           <img src="@/assets/img/global/pic11.png" alt="" class="Img1" slot="bg">
+          <select name="public-choice"  slot="sec" v-model="select"  @change="getCouponSelected">
+            <option  :value="coupon.type" v-for="(coupon,index) in couponList" :key="index">{{coupon.title}}</option>
+          </select>
+          <div class="search" slot="search">
+            <input type="text" placeholder="输入关键字搜索枪械"  v-model="search">
+            <img src="@/assets/img/global/pic10.png" alt="">
+          </div>
         </Top>
         <div class="c1" style="height:14px;"></div>
         <Cn class="cn_cn">
-          <li slot="gun" @click="itemClick(1)">
-            <img src="@/assets/img/fw/fw3.png" alt="">
-            <h1>短枪</h1>
-            <h2>守卫者</h2>
-            <h3>200</h3>
+          <li slot="gun" v-for="(item,index) in items" :key="index" @click="itemClick(item.id)" :mList="item.info">
+            <img :src="'https://images.weserv.nl/?url='+item.image" alt="">
+            <h1>{{item.name}}</h1>
+            <h2>{{item.title}}</h2>
+            <h3>{{item.price}}</h3>
           </li>
         </Cn>
       </div>
@@ -26,6 +33,7 @@ import Page from '@/components/common/page.vue'
 import Search from '@/components/common/search.vue'
 import Top from '@/components/common/Top.vue'
 import Cn from '@/components/common/cn.vue'
+import {api} from "@/request/api";
 export default {
   name: 'gun',
   components: {
@@ -34,16 +42,72 @@ export default {
    Top,
    Cn,
   },
+  created() {
+    this.initdata();
+  },
+  data(){
+    return{
+      list:[],
+      search:'',
+      selectlist:[],
+      select:'',
+      couponList: [],
+    }
+  },
+  computed: {
+    items:function(){
+      let _search = this.search;
+      let reg = new RegExp(_search, 'ig');// 不区分大小写
+      if (_search) {
+        return this.list.filter(function(item){
+          if((item.name.toString().indexOf(_search) != -1) || item.name.match(reg) || (item.title.toString().indexOf(_search) != -1)|| (item.price.toString().indexOf(_search) != -1)){
+            return item;
+          }
+        });
+      }
+      return this.list;
+    },
+  },
   methods: {
     itemClick(id){
-      console.log(id);
        this.$router.push({
-          path: "/GunDetail",
+          path: "/gundetail",
           query: {
             id: id
           }
         });
-    }
+    },
+    initdata(){
+        let url ="/web2_0/vat_gun"
+        api(url,{
+        }).then((result) => {
+          this.list = result.data;
+          this.selectlist = result.data;
+        }).catch((err) => {
+          console.log(err);
+        });
+
+        api("/web2_0/vat_gunsort",{
+        }).then((result) => {
+          this.couponList = result.data;
+          this.select = this.couponList[0].id;
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
+     // select
+    getCouponSelected(){
+        let set = this.select;
+        if(set != 0){
+          let newList = this.selectlist.filter(function(n){
+            return n.type == set
+          })
+          this.list = newList;
+        }else{
+          this.list = this.selectlist;
+        }
+        
+    },
   },
 }
 </script>

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { apiHomeRecentNews } from "@/request/api";
+import { api } from "@/request/api";
 export default {
   name: "list",
   data() {
@@ -35,17 +35,13 @@ export default {
     // 获取数据
     initdata() {
       let url = this.url;
-      apiHomeRecentNews(url, {
+      api(url, {
         p: {}
-      })
-        .then(result => {
-          //  根据后台返回数据处理
-          console.log(result);
-          this.list = result.data;
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      }).then(result => {
+        this.list = result.data;
+      }).catch(err => {
+        console.log(err);
+      });
     },
     // 点击进入详情页
     itemClick(id) {

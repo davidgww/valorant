@@ -1,13 +1,8 @@
 <template>
   <div class="top" id="top">
     <slot name="bg"></slot>
-    <select name="public-choice" v-model="couponSelected" >
-      <option :value="coupon.id" v-for="(coupon,index) in couponList" :key="index">{{coupon.name}}</option>
-    </select>
-    <div class="search">
-        <input type="text" placeholder="输入关键字搜索英雄">
-        <img src="@/assets/img/global/pic10.png" alt="">
-    </div>
+    <slot name="sec"></slot>
+    <slot name="search"></slot>
   </div>
 </template>
 

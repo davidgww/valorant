@@ -1,6 +1,6 @@
 <template>
 <!--为echarts准备一个具备大小的容器dom-->
-<div id="main" style="height: 260px;"></div>
+<div :id="id" style="height: 260px;"></div>
 </template>
 
 <script>
@@ -14,6 +14,9 @@ export default {
       charts: '',
       opinionData: ["0", "1.36", "3", "4", "5", "2", "1.5", "3.5", "1.47", "5.8"]
     }
+  },
+   props: {
+      id: String,
   },
   methods: {
     drawLine(id) {
@@ -104,7 +107,7 @@ export default {
   //调用
   mounted() {
     this.$nextTick(function () {
-      this.drawLine('main')
+      this.drawLine(this.id)
     })
   }
 }

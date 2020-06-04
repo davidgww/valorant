@@ -3,7 +3,10 @@
     <div class="home_page">
       <Search></Search>
       <div class="cn1">
-        <img src="@/assets/img/fw/fw5.png" class="lf" alt />
+      <div class="img lf">
+        <img :src="'https://images.weserv.nl/?url='+list.photo" alt="" >
+      </div>
+      
         <iframe
           class="lf"
           width="656"
@@ -18,70 +21,33 @@
       </div>
       <div class="c1"></div>
       <div class="cn2">
-        <h1>phoenix</h1>
-        <h2>守卫者</h2>
-        <h3>菲尼克斯的明星风范影响了他的战斗风格，他会以耀眼的方式点燃全场。就算没有援军他也会直冲战场。</h3>
+        <h1>{{list.name}}</h1>
+        <h2>{{list.title}}</h2>
+        <h3>{{list.desc}}</h3>
         <ul>
-          <li>
-            <h4>C键，烈焰-200誉币</h4>
+          <li v-for="(item,index) in skillInfo" :key="index">
+            <h4>{{item.price}}</h4>
             <p>
-              装备火焰墙。按射击即可产生一排会
-              前移的火焰，形成一道火墙，可阻挡
-              视野并伤害穿过它的人。按住射击可
-              使火墙朝你准星的方向弯曲。
+              {{item.detail}}
             </p>
             <div class="img">
-              <img src="@/assets/img/fw/fw6.png" alt />
+              <img :src="'https://images.weserv.nl/?url='+item.image" />
             </div>
-            <img src="@/assets/img/detail/C.png" alt class="spc" />
-          </li>
-          <li>
-            <h4>C键，烈焰-200誉币</h4>
-            <p>
-              装备火焰墙。按射击即可产生一排会
-              前移的火焰，形成一道火墙，可阻挡
-              视野并伤害穿过它的人。按住射击可
-              使火墙朝你准星的方向弯曲。
-            </p>
-            <div class="img">
-              <img src="@/assets/img/fw/fw6.png" alt />
-            </div>
-            <img src="@/assets/img/detail/Q.png" alt class="spc" />
-          </li>
-          <li>
-            <h4>C键，烈焰-200誉币</h4>
-            <p>
-              装备火焰墙。按射击即可产生一排会
-              前移的火焰，形成一道火墙，可阻挡
-              视野并伤害穿过它的人。按住射击可
-              使火墙朝你准星的方向弯曲。
-            </p>
-            <div class="img">
-              <img src="@/assets/img/fw/fw6.png" alt />
-            </div>
-            <img src="@/assets/img/detail/E.png" alt class="spc" />
-          </li>
-          <li>
-            <h4>C键，烈焰-200誉币</h4>
-            <p>
-              装备火焰墙。按射击即可产生一排会
-              前移的火焰，形成一道火墙，可阻挡
-              视野并伤害穿过它的人。按住射击可
-              使火墙朝你准星的方向弯曲。
-            </p>
-            <div class="img">
-              <img src="@/assets/img/fw/fw6.png" alt />
-            </div>
-            <img src="@/assets/img/detail/X.png" alt class="spc" />
+            <img v-if="index==0" src="@/assets/img/detail/C.png" alt class="spc" />
+            <img v-if="index==1" src="@/assets/img/detail/Q.png" alt class="spc" />
+            <img v-if="index==2" src="@/assets/img/detail/E.png" alt class="spc" />
+            <img v-if="index==3" src="@/assets/img/detail/X.png" alt class="spc" />
           </li>
         </ul>
       </div>
       <div class="c1"></div>
       <div class="cn3">
-        <Recommend></Recommend> 
-        <Game>
-            <img src="@/assets/img/detail/pic2.png" alt="">
-        </Game>
+      <!-- 英雄攻略 -->
+      <Recommend></Recommend>
+      <!-- 游戏集锦 --> 
+        <Vid class="game">
+           <img src="@/assets/img/detail/pic2.png" alt="" slot="title">
+        </Vid>
         <div class="c1" style="height:147px"></div>
         <div class="partner">
              <img src="@/assets/img/detail/pic3.png" alt="">
@@ -92,16 +58,71 @@
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import Search from "@/components/common/search.vue";
 import Recommend from "@/components/common/recommend.vue";
-import Game from "@/components/common/game.vue";
+import Vid from "@/components/common/Vid.vue";
+import {api} from "@/request/api";
 export default {
-  name: "Home",
+  name: "home",
   components: {
     Search,
     Recommend,
-    Game
-  }
+    Vid,
+    Swiper,
+    SwiperSlide
+  },
+   created() {
+    var self = this;
+    self.initdata(self.$route.query.id);
+  },
+  data(){
+    return{
+      list:[],
+      skillInfo:[],
+      gameInfo:[],
+      swiperOption: {
+        slidesPerView: 4,
+        slidesPerColumn: 1,
+        spaceBetween: 14,
+        pagination: {
+          el: ".game .swiper-pagination",
+          clickable: false,
+        },
+        navigation: {
+          nextEl: ".game .swiper-button-next",
+          prevEl: ".game .swiper-button-prev"
+        },
+       
+      }
+    }
+  },
+  methods: {
+    initdata(id){
+        let url ="/web2_0/vat_heroDetail"
+        api(url,{
+        }).then((result) => {
+          let newList = result.data.filter(function(n){
+            return n.id == id;
+          })
+          this.list = newList[0];
+          this.skillInfo = newList[0].skill;
+        }).catch((err) => {
+          console.log(err);
+        });
+
+         api("/web2_0/getNewsByTags/and?tags=6274&page=0&num=10",{
+        }).then((result) => {
+          this.gameInfo = result.data;
+        }).catch((err) => {
+          console.log(err);
+        });
+    }, 
+
+     itemClick(id){
+      alert("游戏集锦视频ID:"+id);
+    }
+  } 
 };
 </script>
 <style scoped>
@@ -112,17 +133,20 @@ export default {
   width: 100%;
   overflow: hidden;
   min-height: 983px;
-  background: #121f2b url(~@/assets/img/heroGun/bg.png) no-repeat center top;
+  background: url(~@/assets/img/global/bg.png) no-repeat center top;
 }
 #home .home_page {
   width: 1000px;
   margin: 0 auto;
-  background: #101823;
 }
 #home .cn1 {
   width: 940px;
   height: 383px;
   margin-left: 14px;
+}
+#home .cn1 .img{
+  width: 250px;
+  height: 383px;
 }
 #home .cn1 img {
   margin-right: 16px;

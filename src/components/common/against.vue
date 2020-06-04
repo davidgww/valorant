@@ -4,211 +4,29 @@
         <img src="@/assets/img/global/pic15.png" alt="">
     </div>
     <ul>
-        <li>
+        <li v-for="(item,index) in list" :key="index">
           <div class="m1 lf">
             <div class="m1_1 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgd</span>
+              <img :src="'https://images.weserv.nl/?url='+item.team_logo_A" alt=""  class="lf">
+              <span class="lf">{{item.team_name_A}}</span>
             </div>
             <div class="m1_2 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgdwwwwww</span>
+              <img :src="'https://images.weserv.nl/?url='+item.team_logo_B" alt=""  class="lf">
+              <span class="lf">{{item.team_name_B}}</span>
             </div>
           </div>
           <div class="m2 rh">
               <!--分好几种情况 -->
-            <div class="classify1" style="display:none">
+            <div class="classify1" v-if="item.score!='-'">
                 <div class="m2_1 m02">
-                <span>12</span>
+                <span>{{item.score | filter2}}</span>
               </div>
               <div class="m2_2 m02 win">
-                <span>16</span>
+                <span>{{item.score | filter5}}</span>
               </div>
             </div>
-              <div class="classify2">
-                    <div class="m2_3">18:00</div>
-              </div>
-          </div>
-        </li>
-        <li>
-          <div class="m1 lf">
-            <div class="m1_1 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgd</span>
-            </div>
-            <div class="m1_2 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgdwwwwww</span>
-            </div>
-          </div>
-          <div class="m2 rh">
-              <!--分好几种情况 -->
-            <div class="classify1" >
-                <div class="m2_1 m02">
-                <span>12</span>
-              </div>
-              <div class="m2_2 m02 win">
-                <span>16</span>
-              </div>
-            </div>
-              <div class="classify2" style="display:none">
-                    <div class="m2_3">18:00</div>
-              </div>
-          </div>
-        </li>
-        <li>
-          <div class="m1 lf">
-            <div class="m1_1 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgd</span>
-            </div>
-            <div class="m1_2 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgdwwwwww</span>
-            </div>
-          </div>
-          <div class="m2 rh">
-              <!--分好几种情况 -->
-            <div class="classify1" style="display:none">
-                <div class="m2_1 m02">
-                <span>12</span>
-              </div>
-              <div class="m2_2 m02 win">
-                <span>16</span>
-              </div>
-            </div>
-              <div class="classify2">
-                    <div class="m2_3">18:00</div>
-              </div>
-          </div>
-        </li>
-        <li>
-          <div class="m1 lf">
-            <div class="m1_1 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgd</span>
-            </div>
-            <div class="m1_2 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgdwwwwww</span>
-            </div>
-          </div>
-          <div class="m2 rh">
-              <!--分好几种情况 -->
-            <div class="classify1" >
-                <div class="m2_1 m02">
-                <span>12</span>
-              </div>
-              <div class="m2_2 m02 win">
-                <span>16</span>
-              </div>
-            </div>
-              <div class="classify2" style="display:none">
-                    <div class="m2_3">18:00</div>
-              </div>
-          </div>
-        </li>
-        <li>
-          <div class="m1 lf">
-            <div class="m1_1 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgd</span>
-            </div>
-            <div class="m1_2 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgdwwwwww</span>
-            </div>
-          </div>
-          <div class="m2 rh">
-              <!--分好几种情况 -->
-            <div class="classify1" style="display:none">
-                <div class="m2_1 m02">
-                <span>12</span>
-              </div>
-              <div class="m2_2 m02 win">
-                <span>16</span>
-              </div>
-            </div>
-              <div class="classify2">
-                    <div class="m2_3">18:00</div>
-              </div>
-          </div>
-        </li>
-        <li>
-          <div class="m1 lf">
-            <div class="m1_1 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgd</span>
-            </div>
-            <div class="m1_2 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgdwwwwww</span>
-            </div>
-          </div>
-          <div class="m2 rh">
-              <!--分好几种情况 -->
-            <div class="classify1" >
-                <div class="m2_1 m02">
-                <span>12</span>
-              </div>
-              <div class="m2_2 m02 win">
-                <span>16</span>
-              </div>
-            </div>
-              <div class="classify2" style="display:none">
-                    <div class="m2_3">18:00</div>
-              </div>
-          </div>
-        </li>
-        <li>
-          <div class="m1 lf">
-            <div class="m1_1 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgd</span>
-            </div>
-            <div class="m1_2 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgdwwwwww</span>
-            </div>
-          </div>
-          <div class="m2 rh">
-              <!--分好几种情况 -->
-            <div class="classify1" style="display:none">
-                <div class="m2_1 m02">
-                <span>12</span>
-              </div>
-              <div class="m2_2 m02 win">
-                <span>16</span>
-              </div>
-            </div>
-              <div class="classify2">
-                    <div class="m2_3">18:00</div>
-              </div>
-          </div>
-        </li>
-        <li>
-          <div class="m1 lf">
-            <div class="m1_1 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgd</span>
-            </div>
-            <div class="m1_2 m01">
-              <img src="@/assets/img/fw/fw4.png" alt="" class="lf">
-              <span class="lf">lgdwwwwww</span>
-            </div>
-          </div>
-          <div class="m2 rh">
-              <!--分好几种情况 -->
-            <div class="classify1" >
-                <div class="m2_1 m02">
-                <span>12</span>
-              </div>
-              <div class="m2_2 m02 win">
-                <span>16</span>
-              </div>
-            </div>
-              <div class="classify2" style="display:none">
-                    <div class="m2_3">18:00</div>
+              <div class="classify2" v-else>
+                  <div class="m2_3">{{item.matchtime | filter1}}</div>
               </div>
           </div>
         </li>
@@ -220,8 +38,28 @@
 </template>
 
 <script>
+import { apiHomeTAgainst } from "@/request/api";
 export default {
   name: 'against',
+  data(){
+    return {
+      list:[]
+    }
+  },
+  created() {
+    this.initdata();
+  },
+  methods: {
+  // 获取数据
+   initdata(){
+    apiHomeTAgainst({                                
+    }).then((result) => {
+       this.list = result.data;
+     }).catch((err) => {
+       console.log(err);
+     });
+   }
+  }
 }
 </script>
 
@@ -261,6 +99,7 @@ height: 48px;
   margin-top: 5px;
   margin-bottom: 5px;
   overflow: hidden;
+  font-size: 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

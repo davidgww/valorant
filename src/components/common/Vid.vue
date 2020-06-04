@@ -1,26 +1,26 @@
 <template>
-  <div id="game">
+  <div id="Vid">
     <div class="tp">
       <slot name="title"></slot>
     </div>
-    <slot name="game">
-      <swiper class="swiper" :options="swiperOption">
-      <swiper-slide v-for="(item,index) in skinInfo" :key="index">
-        <img :src="'https://images.weserv.nl/?url='+item.img" alt="">
-        <span>
-          {{item.title}}
-        </span>
-      </swiper-slide>
-        <div class="swiper-button-prev" slot="button-prev"></div>
-        <div class="swiper-button-next" slot="button-next"></div>
-      </swiper>
-    </slot>
+       <swiper class="swiper swiper-no-swiping" :options="swiperOption" ref="mySwiper">
+            <swiper-slide v-for="(item,index) in VidList" :key="index" >
+              <div class="skills" @click="itemClick(item.id)">
+                 <img :src="'https://images.weserv.nl/?url='+item.image" alt="" >
+                  <span>
+                    {{item.title}}
+                  </span>
+              </div>
+            </swiper-slide>
+            <div class="swiper-button-prev" slot="button-prev"></div>
+            <div class="swiper-button-next" slot="button-next"></div>
+        </swiper>
   </div>
 </template>
-
 <script>
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
+import {api} from "@/request/api";
 export default {
   name: "swiper-example-slides-per-column",
   title: "Multi row slides layout",
@@ -28,13 +28,22 @@ export default {
     Swiper,
     SwiperSlide
   },
-  props: ["skinInfo"],
   created() {
     var _this = this;
+    _this.initdata();
   },
   methods: {
+    initdata(){
+       let url ="/web2_0/getNewsByTags/and?tags=6274&page=0&num=10"
+       api(url,{
+        }).then((result) => {
+          this.VidList = result.data;
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
     itemClick(id) {
-      console.log(id);
+      alert("跳转的视频ID"+id);
       this.$router.push({
         path: "/gamevideo",
         query: {
@@ -43,26 +52,21 @@ export default {
       });
     }
   },
-
   data() {
     return {
+      VidList:[],
       swiperOption: {
         slidesPerView: 4,
         slidesPerColumn: 1,
         spaceBetween: 14,
         pagination: {
-          el: "#game .swiper-pagination",
+          el: "#Vid .swiper-pagination",
           clickable: true
         },
         navigation: {
-          nextEl: "#game .swiper-button-next",
-          prevEl: "#game .swiper-button-prev"
+          nextEl: "#Vid .swiper-button-next",
+          prevEl: "#Vid .swiper-button-prev"
         },
-        on: {
-          click() {
-            console.log("fuck");
-          }
-        }
       }
     };
   }
@@ -70,14 +74,14 @@ export default {
 </script>
 
 <style  >
-#game {
+#Vid {
   position: relative;
   margin-top: 46px;
 }
-#game .tp {
+#Vid .tp {
   height: 64px;
 }
-#game .tp h1 {
+#Vid .tp h1 {
   margin: 0;
 }
 .swiper {

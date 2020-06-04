@@ -15,62 +15,74 @@
           allowfullscreen="true"
         ></iframe>
         <div class="con rh">
-          <h2 class="tit">Classic经典</h2>
+          <h2 class="tit">{{list}}</h2>
           <ul>
             <li>
               <span class="sp1">价格</span>
-              <span class="sp2">免费</span>
+              <span class="sp2">{{gunInfo.price}}</span>
             </li>
             <li>
               <span class="sp1">射速</span>
-              <span class="sp2">6.75/秒</span>
+              <span class="sp2">{{gunInfo.shootingrd}}</span>
             </li>
             <li>
               <span class="sp1">弹夹容量</span>
-              <span class="sp2">12</span>
+              <span class="sp2">{{gunInfo.clip}}</span>
             </li>
             <li>
               <span class="sp1">射速(备用)</span>
-              <span class="sp2">2.22秒</span>
+              <span class="sp2">{{gunInfo.shootingspeed}}</span>
             </li>
             <li>
               <span class="sp1">穿墙能力</span>
-              <span class="sp2">低</span>
+              <span class="sp2">{{gunInfo.penetrate}}</span>
             </li>
             <li>
               <span class="sp1">0-30M伤害</span>
-              <span class="sp2">身体-26</span>
-              <span class="sp2">头-26</span>
-              <span class="sp2">腿-26</span>
+              <span class="sp2">{{gunInfo.distancebody30}}</span>
+              <span class="sp2">{{gunInfo.distancehead30}}</span>
+              <span class="sp2">{{gunInfo.distanceleg30}}</span>
             </li>
             <li>
               <span class="sp1">主要开火模式</span>
-              <span class="sp2">半自动</span>
+              <span class="sp2">{{gunInfo.Firemode}}</span>
             </li>
             <li>
               <span class="sp1">30-50M伤害</span>
-               <span class="sp2">身体-26</span>
-              <span class="sp2">头-26</span>
-              <span class="sp2">腿-26</span>
+               <span class="sp2">{{gunInfo.distancebody50}}</span>
+              <span class="sp2">{{gunInfo.distancehead50}}</span>
+              <span class="sp2">{{gunInfo.distanceleg50}}</span>
             </li>
             <li>
               <span class="sp1">备用开火模式</span>
-              <span class="sp2">无</span>
+              <span class="sp2">{{gunInfo.Foremoderd}}</span>
             </li>
             <li>
               <span class="sp1">一句话点评</span>
-              <span class="sp2">每回合都会免费得到，伤害低，没钱时能用</span>
+              <span class="sp2">{{gunInfo.commentary}}</span>
             </li>
           </ul>
         </div>
       </div>
       <div class="c1"></div>
       <div class="cn2">
-        <Game>
-          <img src="@/assets/img/detail/pic4.png" alt="">
+        <Game :skinInfo='skinInfo'>
+          <img src="@/assets/img/detail/pic4.png" alt="" slot="title">
         </Game>
         <Game>
-          <img src="@/assets/img/detail/pic5.png" alt="">
+          <img src="@/assets/img/detail/pic5.png" alt="" slot="title">
+           <swiper class="swiper swiper-no-swiping" :options="swiperOption" slot="game" ref="mySwiper">
+            <swiper-slide v-for="(item,index) in strategyInfo" :key="index" >
+              <div class="skills" @click="itemClick(item.id)">
+                 <img :src="'https://images.weserv.nl/?url='+item.image" alt="" >
+                  <span>
+                    {{item.title}}
+                  </span>
+              </div>
+            </swiper-slide>
+            <div class="swiper-button-prev" slot="button-prev"></div>
+            <div class="swiper-button-next" slot="button-next"></div>
+          </swiper>
         </Game>
         <div class="c1" style="height:147px"></div>
         <div class="partner">
@@ -82,16 +94,80 @@
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import "swiper/css/swiper.css";
 import Search from "@/components/common/search.vue";
 import Recommend from "@/components/common/recommend.vue";
 import Game from "@/components/common/game.vue";
+import {api} from "@/request/api";
 export default {
   name: "gundetail",
   components: {
     Search,
     Recommend,
-    Game
-  }
+    Game,
+    Swiper,
+    SwiperSlide
+  },
+  data(){
+    return{
+      list:[],
+      gunInfo:[],
+      skinInfo:[],
+      strategyInfo:[],
+      swiperOption: {
+        slidesPerView: 4,
+        slidesPerColumn: 1,
+        spaceBetween: 14,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: false,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
+        },
+       
+      }
+    }
+  },
+  created() {
+    var self = this;
+    self.initdata(self.$route.query.id);
+  },
+  methods: {
+    initdata(id){
+        let url0 ="/web2_0/vat_gunDetail"
+        let url1 ="/web2_0/getNewsByTags/and?tags=6274&page=0&num=10"
+        api(url0,{
+        }).then((result) => {
+          let newList = result.data.filter(function(n){
+            return n.id == id;
+          })
+          this.list = newList[0].name;
+          this.gunInfo = newList[0].info;
+          this.skinInfo = newList[0].skin;
+        }).catch((err) => {
+          console.log(err);
+        });
+
+        api(url1,{
+        }).then((result) => {
+          this.strategyInfo = result.data;
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
+    itemClick(id){
+      alert("枪械攻略"+id);
+      this.$router.push({
+          path: "/gamevideo",
+          query: {
+            id: id
+          }
+      });
+    }
+  },
 };
 </script>
 <style scoped>

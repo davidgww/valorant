@@ -20,9 +20,9 @@
       </div>
       <div class="c1"></div>
       <div class="cn2">
-        <Game>
-          <img src="@/assets/img/detail/pic6.png" alt="">
-        </Game>
+        <Vid>
+          <img src="@/assets/img/detail/pic6.png" alt="" slot="title">
+        </Vid>
         <div class="c1" style="height:147px"></div>
         <div class="partner">
           <img src="@/assets/img/detail/pic3.png" alt /> 
@@ -31,18 +31,47 @@
     </div>
   </div>
 </template>
-
 <script>
 import Search from "@/components/common/search.vue";
 import Recommend from "@/components/common/recommend.vue";
-import Game from "@/components/common/game.vue";
+import Vid from "@/components/common/Vid.vue";
+import {api} from "@/request/api";
 export default {
-  name: "gundetail",
+  name: "video",
   components: {
     Search,
     Recommend,
-    Game
-  }
+    Vid
+  },
+  created() {
+    this.initdata();
+  },
+  data(){
+    return{
+      list:[]
+    }
+  },
+    methods: {
+    initdata(id){
+        let url ="/web2_0/getNewsByTags/and?tags=6274&page=0&num=10"
+        api(url,{
+        }).then((result) => {
+          console.log(result);
+          this.list = result.data;
+        }).catch((err) => {
+          console.log(err);
+        });
+    },
+    itemClick(id){
+      alert("枪械攻略"+id);
+      this.$router.push({
+          path: "/gamevideo",
+          query: {
+            id: id
+          }
+      });
+    }
+    }
 };
 </script>
 <style scoped>

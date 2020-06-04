@@ -140,11 +140,11 @@
                 </div>
                 <div class="cn2 lf"> 
                     <h1>状态起伏</h1>
-                    <LineChart></LineChart>
+                    <LineChart id="main"></LineChart>
                 </div>
                 <div class="cn3 lf">
                     <h1>地图胜率</h1>
-                    <MapWin></MapWin>
+                    <MapWin id="map1"></MapWin>
                 </div>
             </div>
             <div class="c1" style="height:13px"></div>
