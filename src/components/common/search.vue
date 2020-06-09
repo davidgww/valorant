@@ -1,7 +1,7 @@
 <template>
   <div class="search" id="search">
     <div class="backImba">
-        <img src="@/assets/img/global/pic6.png" alt="" class="Img1">
+        <img src="@/assets/img/global/pic6.png" alt="" class="Img1" @click="backHome()">
     </div>
     <!-- 搜索 -->
     <div class="sc">
@@ -17,6 +17,13 @@
 <script>
 export default {
   name: 'search',
+  methods: {
+      backHome(){
+        this.$router.push({
+          path: "/",
+        });
+      }
+  },
 }
 </script>
 
@@ -38,6 +45,7 @@ export default {
     position: absolute;
     top: 0;
     left: -15px;
+    cursor: pointer;
 }
 #search input{
     width: 190px;

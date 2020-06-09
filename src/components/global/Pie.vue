@@ -73,7 +73,7 @@ export default {
           },
       },
       // 各个部分的颜色
-      color: ['#ff4655', '#1a2635', '#45b29d', '#EF69FB'],
+      color: ['#ff4655', '#1a2635', '#45b29d', '#fff'],
       // 拖拽的时候重新渲染  默认关闭
       calculable: true,
       // 工具箱

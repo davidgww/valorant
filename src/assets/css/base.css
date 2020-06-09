@@ -25,3 +25,54 @@ i{
 :focus{
     outline: none;
 }
+
+/* select */
+.select-custom {
+    width: 100px;
+    height: 28px;
+    position: absolute;
+    top: 20px;
+    left: 414px;
+    z-index: 111111111111;
+  }
+  .select-tp {
+    width: 98px;
+    height: 26px;
+    background: #000;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+  }
+  .select-tp span {
+    font-size: 12px;
+    line-height: 26px;
+    display: block;
+    color: white;
+    padding-left: 30px;
+    float: left;
+  }
+  .select-tp img {
+    float: right;
+    margin-right: 15px;
+    margin-top: 10px;
+  }
+  .select-cn ul li {
+    width: 98px;
+    height: 26px;
+    line-height: 26px;
+    background: #000;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    border-top: none;
+  }
+  .select-cn ul li:hover {
+    background: #fff;
+    color: #000;
+  }
+  .select-cn ul li.active {
+    background: #fff;
+    color: #000;
+  }
+/* select */

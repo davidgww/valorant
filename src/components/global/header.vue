@@ -85,7 +85,6 @@ export default {
   },
   methods: {
     itemClick(link) {
-      console.log(link);
       this.$router.replace(link);
     }
   }

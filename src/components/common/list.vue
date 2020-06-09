@@ -1,5 +1,5 @@
 <template>
-  <div class="list" id="list" v-cloak>
+  <div class="list" v-cloak>
     <slot></slot>
     <ul>
      <!--class  hot -->
@@ -62,50 +62,46 @@ export default {
 [v-cloak] {
 display: none;
 }
-#list h2 {
-  font-size: 20px;
-  font-style: italic;
-  font-family: "微软雅黑";
-  color: white;
+.list img{
   cursor: default;
   margin: 0;
-  margin-top: 16px;
-  margin-bottom: 10px;
+  margin-top: 23px;
+  margin-bottom: 1px;
 }
-#list ul{
+.list ul{
   min-height: 144px;
 }
-#list ul li {
+.list ul li {
   height: 36px;
   line-height: 36px;
   width: 498px;
   cursor: pointer;
   padding-left: 20px;
 }
-#list ul li {
+.list ul li {
   background: url(~@/assets/img/global/pic12.png) no-repeat left center;
 }
-#list ul li .list_cn {
+.list ul li .list_cn {
   width: 498px;
   border-bottom: 1px dashed #323d46;
   margin: 0 auto;
   height: 36px;
   line-height: 36px;
 }
-#list ul li span {
+.list ul li span {
   font-size: 12px;
   color: #5a646b;
 }
-#list ul li:hover span {
+.list ul li:hover span {
   color: white;
 }
-#list ul li:hover {
+.list ul li:hover {
   background: url(~@/assets/img/global/pic14.png) no-repeat left center;
 }
-#list ul li.hot span {
-  color: #ff4655;
+.list:nth-of-type(1) ul li:nth-child(1) span {
+   color: #ff4655;
 }
-#list ul li.hot {
+.list:nth-of-type(1) ul li:nth-child(1){
   background: url(~@/assets/img/global/pic13.png) no-repeat left center;
 }
 </style>

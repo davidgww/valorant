@@ -10,15 +10,15 @@
                 <img src="@/assets/img/home/home1.png" alt="">
                 <!-- 最新动态 -->
                 <List url='/web2_0/getNewsByTags/and?tags=6418&page=0&num=4'>
-                    <h2 class="title">最新动态</h2>
+                    <img src="@/assets/img/home/home2.png" alt="">
                 </List>
                 <!-- 开发日志 -->
                 <List url='/web2_0/getNewsByTags/and?tags=6417&page=0&num=4'>
-                    <h2 class="title">开发日志</h2>
+                    <img src="@/assets/img/home/home3.png" alt="">
                 </List>
                 <!-- 测评报告 -->
                 <List url='/web2_0/getNewsByTags/and?tags=6416&page=0&num=4'>
-                    <h2 class="title">测评报告</h2>
+                    <img src="@/assets/img/home/home4.png" alt="">
                 </List>
             </div>
         </div>

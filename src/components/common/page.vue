@@ -158,7 +158,7 @@ export default {
     background: url("~@/assets/img/global/pic5.png") no-repeat;
 }
 #page .download .load1.active{
-    background: url("~@/assets/img/global/pic5_h.png") no-repeat;
+    background: url("~@/assets/img/global/pic5.png") no-repeat;
 }
 #page .download .load2{
     width: 147px;
@@ -170,7 +170,7 @@ export default {
     background: url("~@/assets/img/global/pic4.png") no-repeat;
 }
 #page .download .load2.active{
-    background: url("~@/assets/img/global/pic4_h.png") no-repeat;
+     background: url("~@/assets/img/global/pic4.png") no-repeat;
 }
 #page .download .load1:hover{
     background: url("~@/assets/img/global/pic5_h.png") no-repeat;

@@ -9,37 +9,6 @@
 <script>
 export default {
   name: "top",
-  data() {
-    return {
-      couponList: [
-        {
-          id: "0",
-          name: "全部"
-        },
-        {
-          id: "1",
-          name: "守卫者"
-        },
-        {
-          id: "2",
-          name: "决斗者"
-        },
-        {
-          id: "3",
-          name: "掌控者"
-        },
-        {
-          id: "4",
-          name: "发起者"
-        }
-      ],
-      couponSelected: ""
-    };
-  },
-  created() {
-    //如果没有这句代码，select中初始化会是空白的，默认选中就无法实现
-    this.couponSelected = this.couponList[0].id;
-  }
 };
 </script>
 
